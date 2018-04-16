@@ -29,7 +29,6 @@ export class CourseComponent {
   }
 
   public nextStep() {
-    console.log(this.step)
-    this.item = this._items.getItems(++this.step);
+    this.item = this._items.getItems(this._items.getLength() - 1 > this.step ? ++this.step : this.step);
   }
 }

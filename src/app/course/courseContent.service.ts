@@ -42,4 +42,8 @@ export class CourseContentService {
     getItems(index = 0): ICourse {
       return this.items[index];
     }
+
+    getLength(): number {
+      return this.items.length;
+    }
 }
