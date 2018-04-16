@@ -38,6 +38,11 @@ import { ReactComponent } from './react';
 import { ProfileComponent } from './profile';
 //import { angularProfileCard } from '../../components/main-profile/index';
 import { NoContentComponent } from './no-content';
+import { CourseComponent } from './course';
+import { CourseContentService } from './course/courseContent.service';
+import { LessonVideoComponent } from './lessonVideo';
+import { LessonRadioComponent } from './lessonRadio';
+import { LessonCheckboxComponent } from './lessonCheckbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import '../styles/styles.scss';
@@ -66,6 +71,10 @@ type StoreType = {
     ReactComponent,
     ProfileComponent,
     NoContentComponent,
+    CourseComponent,
+    LessonRadioComponent,
+    LessonCheckboxComponent,
+    LessonVideoComponent
   ],
   /**
    * Import Angular's modules.
@@ -88,6 +97,7 @@ type StoreType = {
    */
   providers: [
     ENV_PROVIDERS,
+    CourseContentService,
     APP_PROVIDERS
   ]
 })
