@@ -51,7 +51,7 @@ export class EditPostComponent {
   }
 
   public save() {
-    if (!this.form.valid) 
+    if (!this.form.valid)
       return;
     this.apollo.mutate({
       mutation: UpdatePostMutation,
@@ -67,7 +67,7 @@ export class EditPostComponent {
       .subscribe({
         next: ({ data }) => {
           console.log('edit post', data);
-          // get edit data      
+          // get edit data
           this.router.navigate(['/posts']);
         }, error: (errors) => {
           console.log('there was an error sending the query', errors);

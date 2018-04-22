@@ -7,7 +7,6 @@ export class CourseContentService {
 
     constructor() {
         this.items = [
-          {type: 'video', title: 'First lesson', src: 'https://www.youtube.com/embed/t3KH5LXHi0s'},
           {
             type: 'checkbox',
             title: 'Check correct checkboxes',
@@ -35,7 +34,8 @@ export class CourseContentService {
               name: 'Task3 false',
               answer: false,
             }]
-          }
+          },
+          {type: 'video', title: 'First lesson', src: 'https://www.youtube.com/embed/t3KH5LXHi0s'}
         ];
     }
 

@@ -13,7 +13,7 @@ import {DomSanitizer} from '@angular/platform-browser';
           name="task.name">
         <label [for]="task.name">{{task.name}}</label>
         </div>
-        <button mat-button (click)='nextStep()'>Check Answer</button>
+        <button mat-raised-button color="accent" (click)='nextStep()'>Check Answer</button>
       </form>
     </div>
   `

@@ -20,6 +20,7 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatListModule,
+  MatButtonModule,
   MatGridListModule
 } from '@angular/material';
 import 'hammerjs';
@@ -88,6 +89,7 @@ type StoreType = {
     MatToolbarModule,
     MatCardModule,
     MatListModule,
+    MatButtonModule,
     MatGridListModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     ApolloModule.forRoot(client),

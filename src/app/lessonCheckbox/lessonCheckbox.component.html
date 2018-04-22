@@ -1,0 +1,24 @@
+<div>
+    <h2>{{title}}</h2>
+    <form [formGroup]="checkBoxGroup" (ngSubmit)="check()">
+      <div>
+          <input type="checkbox" [id]="result" name="result" formControlName="result"/>
+          <label [for]="result">result true</label>
+        <br>
+      </div>
+      <button mat-raised-button type="submit">Check</button>
+    </form>
+</div>
+
+<!-- <div>
+    <h2>{{title}}</h2>
+    <form [formGroup]="checkGroup" (ngSubmit)="check()" #checkForm="ngForm">
+      <div *ngFor="let task of tasks">
+          <mat-checkbox type="checkbox" [id]="task.name" [formControlName]="task.name" ></mat-checkbox>
+          <label [for]="task.name">{{task.name}}</label>
+          <mat-error>This field is required</mat-error>
+        <br>
+      </div>
+      <button mat-raised-button type="submit">Check</button>
+    </form>
+</div> -->

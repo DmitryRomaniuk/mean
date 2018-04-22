@@ -1,31 +1,34 @@
 import { Component, Input } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+class Task {
+  constructor(
+    public result: boolean
+  ) {}
+}
 
 @Component({
   selector: 'lesson-checkbox',
-  template: `
-    <div>
-      <h2>{{title}}</h2>
-      <form>
-        <div *ngFor="let task of tasks">
-          <input type="checkbox" [id]="task.name"
-          name="task.name">
-          <label [for]="task.name">{{task.name}}</label>
-        </div>
-        <button mat-button (click)='nextStep()'>Check Answer</button>
-      </form>
-    </div>
-  `
+  templateUrl: './lessonCheckbox.component.html'
 })
+
 export class LessonCheckboxComponent {
   @Input() title: string;
   @Input() tasks: Array<Object>;
+  checkBoxGroup: FormGroup;
+  task: Task = new Task (true);
 
-  constructor(public sanitizer: DomSanitizer) {
+  ngOnInit(): void{
+    this.checkBoxGroup = new FormGroup({
+      result: new FormControl(this.task.result, [
+            Validators.requiredTrue,
+          ])
+    });
   }
 
-  nextStep() {
-
-  }
+  check() {
+    console.log(this.checkBoxGroup.value)
+    console.log(this.checkBoxGroup.valid)
+   }
 }

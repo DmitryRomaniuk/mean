@@ -1,0 +1,13 @@
+<div class="courses">
+  <h1>Course</h1>
+  <lesson-video *ngIf="item.type === 'video'" [title]="item.title" [link]="item.src"></lesson-video>
+  <lesson-radio *ngIf="item.type === 'radio'" [title]="item.title" [tasks]="item.tasks"></lesson-radio>
+  <lesson-checkbox *ngIf="item.type === 'checkbox'" [title]="item.title" [tasks]="item.tasks"></lesson-checkbox>
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)='changeStep(-1)'
+      *ngIf="step !== 0">Previous step</button>
+    &nbsp;
+    <button mat-raised-button color="primary" (click)='changeStep(1)'
+      *ngIf="step !== _items.getLength() - 1">Next step</button>
+  </div>
+</div>
