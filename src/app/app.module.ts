@@ -23,6 +23,7 @@ import {
   MatButtonModule,
   MatGridListModule
 } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import 'hammerjs';
 
 /*
@@ -88,6 +89,7 @@ type StoreType = {
     HttpModule,
     MatToolbarModule,
     MatCardModule,
+    MatCheckboxModule,
     MatListModule,
     MatButtonModule,
     MatGridListModule,

@@ -1,10 +1,8 @@
 <div>
     <h2>{{title}}</h2>
     <form [formGroup]="checkBoxGroup" (ngSubmit)="check()">
-      <div>
-          <input type="checkbox" [id]="result" name="result" formControlName="result"/>
-          <label [for]="result">result true</label>
-        <br>
+      <div class="check-box-single" *ngFor="let task of tasks">
+          <mat-checkbox name="task.name" formControlName="task.name">{{task.name}}</mat-checkbox>
       </div>
       <button mat-raised-button type="submit">Check</button>
     </form>

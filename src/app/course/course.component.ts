@@ -14,11 +14,11 @@ export class CourseComponent {
   step: number;
 
   constructor(private _items: CourseContentService) {
-    this.step = 0;
   }
 
   public ngOnInit() {
-    this.item = this._items.getItems();
+    this.step = 0;
+    this.item = this._items.getItem(this.step);
   }
 
   public changeStep(direction) {
@@ -28,6 +28,6 @@ export class CourseComponent {
     if (direction > 0 && this.step < this._items.getLength() - 1) {
       this.step = this.step + direction
     }
-    this.item = this._items.getItems( this.step );
+    this.item = this._items.getItem( this.step );
   }
 }

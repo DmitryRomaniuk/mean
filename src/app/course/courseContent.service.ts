@@ -39,7 +39,7 @@ export class CourseContentService {
         ];
     }
 
-    getItems(index = 0): ICourse {
+    getItem(index = 0): ICourse {
       return this.items[index];
     }
 
