@@ -1,12 +1,30 @@
 <div>
     <h2>{{title}}</h2>
     <form [formGroup]="checkBoxGroup" (ngSubmit)="check()">
-      <div class="check-box-single" *ngFor="let task of tasks">
-          <mat-checkbox name="task.name" formControlName="task.name">{{task.name}}</mat-checkbox>
+      <div formArrayName="tasksArray">
+        <div class="check-box-single" *ngFor="let task of tasks; index as i">
+          <mat-checkbox name="task.name" [formControlName]="i">{{task.name}}</mat-checkbox>
+        </div>
       </div>
       <button mat-raised-button type="submit">Check</button>
     </form>
 </div>
+
+
+<!-- <div [formGroup]="myGroup">
+  <div formArrayName="cities">
+    <div *ngFor="let city of cityArray.controls; index as i">
+      <input [formControlName]="i">
+    </div>
+  </div>
+</div>
+
+In your class:
+
+this.cityArray = new FormArray([new FormControl('SF')]);
+this.myGroup = new FormGroup({
+  cities: this.cityArray
+}); -->
 
 <!-- <div>
     <h2>{{title}}</h2>

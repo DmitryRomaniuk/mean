@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 
 class Task {
   constructor(
-    public result: boolean
+    public name: string,
+    public answer: boolean
   ) {}
 }
 
@@ -17,27 +18,22 @@ class Task {
 export class LessonCheckboxComponent {
   @Input() title: string;
   @Input() tasks: Array<Object>;
+  tasksArray: FormArray;
   checkBoxGroup: FormGroup;
-  task: Task = new Task (true);
-  answers: Task[];
+  task: Task;
+  answers: boolean[];
 
   ngOnInit(): void{
-    // tasks: [{
-    //   name: 'Task1 true',
-    //   answer: true,
-    // },{
-    //   name: 'Task2 false',
-    //   answer: false,
-    // },{
-    //   name: 'Task3 false',
-    //   answer: false,
-    // }]
-    this.answers = this.tasks.map(element: {name: string, answer: boolean} => new Task(element.answer));
+    function validator(g: FormControl) {
+      return g.value === this ? null : {'mismatch': true};
+    }
+    this.tasksArray = new FormArray(this.tasks.map((task: Task) => {
+        return new FormControl(task.answer, validator.bind(task.answer));
+      }));
     this.checkBoxGroup = new FormGroup({
-      result: new FormControl(this.task.result, [
-            Validators.requiredTrue,
-          ])
+      tasksArray: this.tasksArray
     });
+    this.answers = this.tasks.map((elem: Task) => elem.answer);
   }
 
   check() {
