@@ -1,12 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 
-class Task {
-  constructor(
-    public name: string,
-    public answer: boolean
-  ) {}
+interface Task {
+  name: string,
+  answer: boolean
 }
 
 @Component({
@@ -17,18 +15,23 @@ class Task {
 
 export class LessonCheckboxComponent {
   @Input() title: string;
-  @Input() tasks: Array<Object>;
-  tasksArray: FormArray;
+  @Input() tasks: Array<Task>;
+  @Output() onTaskChanged: EventEmitter<undefined>;
+  answers: boolean[];
   checkBoxGroup: FormGroup;
   task: Task;
-  answers: boolean[];
+  tasksArray: FormArray;
+
+  constructor() {
+    this.onTaskChanged = new EventEmitter();
+  }
 
   ngOnInit(): void{
-    function validator(g: FormControl) {
-      return g.value === this ? null : {'mismatch': true};
+    function validator(g: FormControl, answer: boolean) {
+      return g.value === answer ? null : {'mismatch': true};
     }
     this.tasksArray = new FormArray(this.tasks.map((task: Task) => {
-        return new FormControl(task.answer, validator.bind(task.answer));
+        return new FormControl(task.answer, (g: FormControl) => validator(g, task.answer));
       }));
     this.checkBoxGroup = new FormGroup({
       tasksArray: this.tasksArray
@@ -37,7 +40,8 @@ export class LessonCheckboxComponent {
   }
 
   check() {
-    console.log(this.checkBoxGroup.value)
-    console.log(this.checkBoxGroup.valid)
+    if (this.checkBoxGroup.valid === true ) {
+      this.onTaskChanged.emit();
+    }
    }
 }

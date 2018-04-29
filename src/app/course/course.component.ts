@@ -30,4 +30,8 @@ export class CourseComponent {
     }
     this.item = this._items.getItem( this.step );
   }
+
+  public changeTask() {
+    this.changeStep(this.step++);
+  }
 }

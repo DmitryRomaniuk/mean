@@ -1,31 +1,47 @@
-import { Component, Input } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 
+interface Task {
+  name: string,
+  answer: boolean
+}
 
 @Component({
   selector: 'lesson-radio',
-  template: `
-    <div>
-      <h2>{{title}}</h2>
-      <form>
-        <div *ngFor="let task of tasks">
-          <input type="radio" [id]="task.name"
-          name="task.name">
-        <label [for]="task.name">{{task.name}}</label>
-        </div>
-        <button mat-raised-button color="accent" (click)='nextStep()'>Check Answer</button>
-      </form>
-    </div>
-  `
+  styleUrls: ['./lessonRadio.component.scss'],
+  templateUrl: './lessonRadio.component.html'
 })
+
 export class LessonRadioComponent {
   @Input() title: string;
-  @Input() tasks: Array<Object>;
+  @Input() tasks: Array<Task>;
+  @Output() onTaskChanged: EventEmitter<undefined>;
+  answers: boolean[];
+  radioGroup: FormGroup;
+  task: Task;
+  tasksArray: FormArray;
 
-  constructor(public sanitizer: DomSanitizer) {
+  constructor() {
+    this.onTaskChanged = new EventEmitter();
   }
 
-  nextStep() {
-
+  ngOnInit(): void{
+    function validator(g: FormControl, answer: boolean) {
+      return g.value === answer ? null : {'mismatch': true};
+    }
+    this.tasksArray = new FormArray(this.tasks.map((task: Task) => {
+        return new FormControl(task.answer, (g: FormControl) => validator(g, task.answer));
+      }));
+    this.radioGroup = new FormGroup({
+      tasksArray: this.tasksArray
+    });
+    this.answers = this.tasks.map((elem: Task) => elem.answer);
   }
+
+  check() {
+    if (this.radioGroup.valid === true ) {
+      this.onTaskChanged.emit();
+    }
+   }
 }
