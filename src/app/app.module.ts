@@ -24,6 +24,7 @@ import {
   MatGridListModule
 } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import 'hammerjs';
 
 /*
@@ -91,6 +92,7 @@ type StoreType = {
     MatCardModule,
     MatCheckboxModule,
     MatListModule,
+    MatRadioModule,
     MatButtonModule,
     MatGridListModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),

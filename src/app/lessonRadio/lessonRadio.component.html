@@ -1,11 +1,12 @@
 <div>
     <h2>{{title}}</h2>
-    <form [formGroup]="radioGroup" (ngSubmit)="check()">
-      <div formArrayName="tasksArray">
-        <div class="radio-single" *ngFor="let task of tasks; index as i">
-          <mat-radio-button name="task.name" [formControlName]="i">{{task.name}}</mat-radio-button>
-        </div>
-      </div>
+    <form [formGroup]="radioGroupTask" (ngSubmit)="check()">
+      <mat-radio-group formControlName="radioControlTask">
+        <mat-radio-button
+          *ngFor="let task of tasks"
+          [value]="task.name"
+          class="radio-single">{{task.name}}</mat-radio-button>
+      </mat-radio-group>
       <button mat-raised-button type="submit">Check</button>
     </form>
 </div>

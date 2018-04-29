@@ -17,8 +17,8 @@ export class LessonRadioComponent {
   @Input() title: string;
   @Input() tasks: Array<Task>;
   @Output() onTaskChanged: EventEmitter<undefined>;
-  answers: boolean[];
-  radioGroup: FormGroup;
+  answer: number;
+  radioGroupTask: FormGroup;
   task: Task;
   tasksArray: FormArray;
 
@@ -27,20 +27,19 @@ export class LessonRadioComponent {
   }
 
   ngOnInit(): void{
-    function validator(g: FormControl, answer: boolean) {
-      return g.value === answer ? null : {'mismatch': true};
+    var tasks = this.tasks;
+    var answer: number;
+    this.tasks.forEach((elem: Task, i: number) => elem.answer ? answer = i : '');
+    function validator(g: FormControl) {
+      return g.value === tasks[answer].name ? null : {'mismatch': true};
     }
-    this.tasksArray = new FormArray(this.tasks.map((task: Task) => {
-        return new FormControl(task.answer, (g: FormControl) => validator(g, task.answer));
-      }));
-    this.radioGroup = new FormGroup({
-      tasksArray: this.tasksArray
+    this.radioGroupTask = new FormGroup({
+      radioControlTask: new FormControl('', function(g: FormControl) {return validator(g)})
     });
-    this.answers = this.tasks.map((elem: Task) => elem.answer);
   }
 
   check() {
-    if (this.radioGroup.valid === true ) {
+    if (this.radioGroupTask.valid === true ) {
       this.onTaskChanged.emit();
     }
    }

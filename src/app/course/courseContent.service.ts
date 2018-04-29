@@ -25,11 +25,11 @@ export class CourseContentService {
             type: 'radio',
             title: 'Check correct radio',
             tasks: [{
-              name: 'Task1 true',
-              answer: true,
-            },{
-              name: 'Task2 false',
+              name: 'Task1 false',
               answer: false,
+            },{
+              name: 'Task2 true',
+              answer: true,
             },{
               name: 'Task3 false',
               answer: false,

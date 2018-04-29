@@ -4,11 +4,17 @@
     *ngIf="item.type === 'video'"
     [title]="item.title"
     [link]="item.src"></lesson-video>
-  <lesson-radio *ngIf="item.type === 'radio'" [title]="item.title" [tasks]="item.tasks"></lesson-radio>
-  <lesson-checkbox (onTaskChanged)="changeTask()"
+  <lesson-radio
+    *ngIf="item.type === 'radio'"
+    [title]="item.title"
+    [tasks]="item.tasks"
+    (onTaskChanged)="changeTask()"
+    ></lesson-radio>
+  <lesson-checkbox
     *ngIf="item.type === 'checkbox'"
     [title]="item.title"
     [tasks]="item.tasks"
+    (onTaskChanged)="changeTask()"
     ></lesson-checkbox>
   <div class="buttons">
     <button mat-raised-button color="primary" (click)='changeStep(-1)'
