@@ -1,1 +1,1 @@
-export * from './course.component';
+export { CourseModule } from './course.module';

@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { LessonVideoComponent } from '../lessonVideo';
-import { CourseContentService } from './courseContent.service';
-import { ICourse } from '../course/course.interface';
+import { Http, Response } from '@angular/http';
+import { CourseService } from '../course.service';
+import { ICourse } from '../course.interface';
 
 @Component({
   selector: 'course',
   styleUrls: ['./course.component.scss'],
-  templateUrl: './course.component.html',
-  providers: [LessonVideoComponent]
+  templateUrl: './course.component.html'
 })
 export class CourseComponent {
-  item: ICourse;
-  step: number;
+  private item: ICourse;
+  private step: number;
 
-  constructor(private _items: CourseContentService) {
+  constructor(
+    private _items: CourseService
+  ) {
   }
 
   public ngOnInit() {
@@ -23,10 +24,10 @@ export class CourseComponent {
 
   public changeStep(direction) {
     if (0 < this.step && direction < 0) {
-      this.step = this.step + direction
+      this.step = this.step + direction;
     }
     if (direction > 0 && this.step < this._items.getLength() - 1) {
-      this.step = this.step + direction
+      this.step = this.step + direction;
     }
     this.item = this._items.getItem( this.step );
   }
