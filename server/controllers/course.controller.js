@@ -1,12 +1,12 @@
 // import Post from '../models/post.model';
 
 
-// function load(params) {
-//   return Post.get(params.id);
-// }
+function load(req, res) {
+  return res.json(items[req.params.courseId]);
+}
 
 function get(req, res) {
-  return res.json(items);
+  return res.json(req.post);
 }
 
 let items = [
@@ -38,7 +38,12 @@ let items = [
       answer: false,
     }]
   },
-  {type: 'video', title: 'First lesson', src: 'https://www.youtube.com/embed/t3KH5LXHi0s'}
+  {
+    type: 'video',
+    title: 'First lesson',
+    src: 'https://www.youtube.com/embed/t3KH5LXHi0s',
+    lastTask: true
+  }
 ];
 
 // function create(params) {
@@ -68,7 +73,7 @@ let items = [
 // }
 
 export default {
-  // load,
+  load,
   get,
   // create,
   // update,

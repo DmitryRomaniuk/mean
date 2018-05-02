@@ -1,7 +1,17 @@
-import { CourseComponent } from './component/course.component';
+import { CourseComponent } from './component';
 
 export const routes = [
     {
-        path: '', component: CourseComponent
+        path: '', children: [
+        {
+          path: '',
+          redirectTo: '/course/0',
+          pathMatch: 'full',
+        },
+        {
+          path: ':id',
+          component: CourseComponent
+        }
+      ]
     },
 ];
