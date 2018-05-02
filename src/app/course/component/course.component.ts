@@ -45,7 +45,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   }
 
   public changeTask() {
-    this.changeStep(this.step++);
+    this.changeStep(1);
   }
 
   public ngOnDestroy() {
