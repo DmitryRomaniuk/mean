@@ -20,6 +20,13 @@ import { CourseService } from './course.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { AppComponent }         from './ad/app.component';
+import { HeroJobAdComponent }   from './ad/hero-job-ad.component';
+import { AdBannerComponent }    from './ad/ad-banner.component';
+import { HeroProfileComponent } from './ad/hero-profile.component';
+import { AdDirective }          from './ad/ad.directive';
+import { AdService }            from './ad/ad.service';
+
 @NgModule({
   declarations: [
     /**
@@ -28,7 +35,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CourseComponent,
     LessonVideoComponent,
     LessonCheckboxComponent,
-    LessonRadioComponent
+    LessonRadioComponent,
+    AdBannerComponent,
+    HeroJobAdComponent,
+    HeroProfileComponent,
+    AdDirective
   ],
   imports: [
     CommonModule,
@@ -46,8 +57,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatGridListModule,
     // ApolloModule.forRoot(client)
   ],
+  entryComponents: [ HeroJobAdComponent, HeroProfileComponent ],
   providers: [
     CourseService,
+    AdService
   ]
 })
 export class CourseModule {
