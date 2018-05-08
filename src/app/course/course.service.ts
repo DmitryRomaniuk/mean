@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { ICourse } from './course.interface';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class CourseService {
 
     constructor(
-      private http: Http
+      private http: HttpClient
     ) {
     }
 
     public getItem(index = 0): Observable<ICourse> {
       const url =  'api/course/' + index;
-      return this.http.get(url)
-        .catch(this.handleError)
-        .map((res: Response) => res.json());
+      return this.http.get(url).pipe(
+        catchError(this.handleError)
+      );
     }
 
     private handleError(error: any) {
