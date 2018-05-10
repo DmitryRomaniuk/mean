@@ -1,11 +1,25 @@
-import { ApolloClient, createNetworkInterface } from 'apollo-client';
-
-const clientConfig = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: '/api/graphql'
-  })
-});
-
-export function client(): ApolloClient {
-  return clientConfig;
-}
+// import { NgModule } from '@angular/core';
+// import { HttpClientModule } from '@angular/common/http';
+// import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+// import { InMemoryCache } from 'apollo-cache-inmemory';
+// import { ApolloModule, Apollo } from 'apollo-angular';
+//
+// @NgModule({
+//   imports: [
+//     // ... other modules
+//     HttpClientModule,
+//     HttpLinkModule,
+//     ApolloModule
+//   ]
+// })
+// class AppModule {
+//   constructor(
+//     apollo: Apollo,
+//     httpLink: HttpLink
+//   ) {
+//     apollo.create({
+//       link: httpLink.create({ uri: '/api/graphql' }),
+//       cache: new InMemoryCache()
+//     });
+//   }
+// }

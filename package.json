@@ -88,6 +88,8 @@
     "@angularclass/hmr-loader": "~3.0.2",
     "angular2-universal": "2.0.11",
     "apollo-angular": "^1.0.1",
+    "apollo-angular-link-http": "^1.0.3",
+    "apollo-cache-inmemory": "^1.2.1",
     "apollo-client": "^2.3.1",
     "app-root-path": "^2.0.1",
     "babel-cli": "^6.24.1",

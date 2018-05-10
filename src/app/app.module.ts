@@ -51,6 +51,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+// import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+// import { InMemoryCache } from 'apollo-cache-inmemory';
+// import { ApolloModule, Apollo } from 'apollo-angular';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -84,12 +87,14 @@ type StoreType = {
    * Import Angular's modules.
    */
   imports: [
+    // ApolloModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
+    // HttpLinkModule,
     MatToolbarModule,
     MatCardModule,
     MatCheckboxModule,
@@ -113,8 +118,15 @@ export class AppModule {
 
   constructor(
     public appRef: ApplicationRef,
-    public appState: AppState
-  ) { }
+    public appState: AppState,
+    // public apollo: Apollo,
+    // public httpLink: HttpLink
+  ) {
+    // this.apollo.create({
+    //   link: httpLink.create({ uri: '/api/graphql' }),
+    //   cache: new InMemoryCache()
+    // });
+  }
 
   public hmrOnInit(store: StoreType) {
     if (!store || !store.state) {
