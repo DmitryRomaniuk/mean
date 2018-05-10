@@ -17,6 +17,7 @@
     (onTaskChanged)="changeTask()"
     ></lesson-checkbox>
   <div *ngSwitchDefault>Wait please...</div>
+  <router-outlet></router-outlet>
   <div class="buttons">
     <button mat-raised-button color="primary" (click)='changeStep(-1)'
       *ngIf="step !== 0">Previous step</button>

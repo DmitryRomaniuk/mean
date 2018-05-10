@@ -15,7 +15,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   public ads: AdItem[];
   private item: ICourse;
   private step: number;
-  private sub: Subscription;
+  private subRouter: Subscription;
+  private subService: Subscription;
 
   constructor(
     private courseService: CourseService,
@@ -27,10 +28,10 @@ export class CourseComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.item = {type: '', title: ''};
-    this.sub = this.route.params.subscribe((params: Params) => {
+    this.subRouter = this.route.params.subscribe((params: Params) => {
       this.step = +params.id;
     });
-    this.courseService.getItem(this.step).subscribe((res: ICourse) => {
+    this.subService = this.courseService.getItem(this.step).subscribe((res: ICourse) => {
       this.item = res;
     });
     this.ads = this.adService.getAds();
@@ -53,6 +54,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.subRouter.unsubscribe();
+    this.subService.unsubscribe();
   }
 }
